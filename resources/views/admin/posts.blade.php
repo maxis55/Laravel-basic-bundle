@@ -8,4 +8,5 @@
 
 @section('content')
     <p>You are logged in!</p>
+    Logged in as {{auth()->getDefaultDriver()}}
 @stop

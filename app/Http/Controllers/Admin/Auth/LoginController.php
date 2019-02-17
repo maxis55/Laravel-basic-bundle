@@ -46,7 +46,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        if (auth()->guard('admin')->check()) {
+        if ($this->guard()->check()) {
             return redirect($this->redirectTo);
         }
 

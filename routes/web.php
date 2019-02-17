@@ -20,11 +20,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace'=>'Admin' ], func
 
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace'=>'Admin' ], function () {
+Route::group(
+    [
+        'prefix' => 'admin',
+        'as' => 'admin.',
+        'namespace'=>'Admin',
+        'middleware' => [
+            'auth:admin',
+            'admin',
+            'role:admin|superadmin',
+        ]
+    ],
+    function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
 
-Route::group(['namespace'=>'User'],function () {
+Route::group(['namespace'=>'User'], function () {
     Auth::routes();
     Route::get('/home', 'HomeController@index')->name('home');
 });

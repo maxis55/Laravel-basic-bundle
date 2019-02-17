@@ -15,16 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace'=>'Admin' ], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
     Auth::routes(['register' => false]);
 
 });
 
 Route::group(
     [
-        'prefix' => 'admin',
-        'as' => 'admin.',
-        'namespace'=>'Admin',
+        'prefix'     => 'admin',
+        'as'         => 'admin.',
+        'namespace'  => 'Admin',
         'middleware' => [
             'auth:admin',
             'admin',
@@ -32,10 +32,11 @@ Route::group(
         ]
     ],
     function () {
-    Route::get('/', 'HomeController@index')->name('home');
-});
+        Route::get('/', 'HomeController@index')->name('home');
+    }
+);
 
-Route::group(['namespace'=>'User'], function () {
+Route::group(['namespace' => 'Front'], function () {
     Auth::routes();
     Route::get('/home', 'HomeController@index')->name('home');
 });

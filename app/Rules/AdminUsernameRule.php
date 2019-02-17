@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Models\User;
+use App\Models\Users\User;
 use Illuminate\Contracts\Validation\Rule;
 
 class AdminUsernameRule implements Rule

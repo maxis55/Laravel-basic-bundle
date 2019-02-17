@@ -104,7 +104,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => 'App\Models\User',
+        'users' => 'App\Models\Users\User',
     ],
 
     /*
@@ -121,12 +121,12 @@ return [
         /**
          * Role model
          */
-        'role' => 'App\Models\Role',
+        'role' => 'App\Models\Roles\Role',
 
         /**
          * Permission model
          */
-        'permission' => 'App\Models\Permission',
+        'permission' => 'App\Models\Permissions\Permission',
 
         /**
          * Team model

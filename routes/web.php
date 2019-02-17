@@ -33,6 +33,11 @@ Route::group(
     ],
     function () {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::namespace('Posts')->group(function () {
+
+            Route::resource('posts', 'PostController');
+            Route::get('posts/{post}/remove-image', 'PostController@removeImage')->name('posts.remove-image');
+        });
     }
 );
 

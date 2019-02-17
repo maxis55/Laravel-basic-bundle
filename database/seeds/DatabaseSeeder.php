@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         //this seeder need to be run only once for template app
         //and expanded further into the development
          $this->call(LaratrustSeeder::class);
+         $this->call(PostSeeder::class);
     }
 }

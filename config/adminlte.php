@@ -111,7 +111,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'Content',
         [
             'text' => 'Blog',
             'url'  => 'admin/blog',
@@ -123,6 +123,20 @@ return [
             'icon'        => 'file',
             'label'       => 4,
             'label_color' => 'success',
+        ],
+        [
+            'text'    => 'Posts',
+            'icon'    => 'file',
+            'submenu' => [
+                [
+                    'text' => 'List',
+                    'route'  => 'admin.posts.index',
+                ],
+                [
+                    'text' => 'Create',
+                    'route'  => 'admin.posts.create',
+                ],
+            ],
         ],
         'ACCOUNT SETTINGS',
         [

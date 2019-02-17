@@ -82,16 +82,17 @@ return [
     | logout URL automatically sends a POST request in Laravel 5.3 or higher.
     | You can set the request to a GET or POST with logout_method.
     | Set register_url to null if you don't want a register link.
+    | Set password_reset_url to null if you don't want a password reset link.
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin/home',
 
-    'logout_url' => 'logout',
+    'logout_url' => 'admin/logout',
 
     'logout_method' => null,
 
-    'login_url' => 'login',
+    'login_url' => 'admin/login',
 
     'register_url' => null,
 
@@ -221,6 +222,6 @@ return [
     'plugins' => [
         'datatables' => true,
         'select2'    => true,
-        'chartjs'    => true,
+        'chartjs'    => false,
     ],
 ];

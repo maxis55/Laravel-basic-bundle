@@ -14,9 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace'=>'Admin' ],function () {
     Auth::routes();
+    Route::get('/home', 'HomeController@index');
 });
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

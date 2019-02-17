@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Roles;
+namespace App\Models;
 
 use Laratrust\Models\LaratrustRole;
 

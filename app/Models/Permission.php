@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Permissions;
+namespace App\Models;
 
 use Laratrust\Models\LaratrustPermission;
 

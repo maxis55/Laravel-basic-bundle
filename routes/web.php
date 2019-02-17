@@ -15,14 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group( ['prefix' => 'admin', 'namespace'=>'Admin'], function () {
-    //routes that don't need name admin.{anything}
-    Auth::routes(['register' => false]);
-});
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.','namespace'=>'Admin' ], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Auth::routes(['register' => false]);
 });
 
 

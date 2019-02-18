@@ -1,7 +1,7 @@
 @if (is_string($item))
     <li class="header">{{ $item }}</li>
 @else
-    <li class="{{ $item['class'] }}">
+    <li class="{{ str_replace('active', '', $item['class']) }} {{request()->fullUrl()===$item['href']?'active':''}}">
         <a href="{{ $item['href'] }}"
            @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
         >

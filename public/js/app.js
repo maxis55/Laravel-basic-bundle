@@ -49091,8 +49091,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Programs\OpenServer\OSPanel\domains\LaravelLTE\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Programs\OpenServer\OSPanel\domains\LaravelLTE\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\OSPanel\domains\Laravel_Basic_Bundle\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\OSPanel\domains\Laravel_Basic_Bundle\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

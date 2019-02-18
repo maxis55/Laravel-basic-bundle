@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Posts')
+@section('title', 'Редактировать запись')
 
 @section('content_header')
-    <h1>Posts</h1>
+    <h1>Редактировать запись</h1>
 @stop
 
 @section('content')
@@ -11,13 +11,13 @@
     <section class="content">
         @include('layouts.errors-and-messages')
         <div class="box">
-            <form action="{{ route('admin.posts.update', $post->id) }}" method="post" class="form" enctype="multipart/form-data">
+            <form action="{{ route('admin.posts.update', $post->id) }}" method="post" class="form dynamic_form" enctype="multipart/form-data">
                 <div class="box-body">
                     <input type="hidden" name="_method" value="put">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
                         <label for="type">Тип записи <span class="text-danger">*</span></label>
-                        <select type="text" name="type" id="type" class="form-control" required autocomplete="off">
+                        <select type="text" name="type" id="type" class="form-control type_select" required autocomplete="off">
                             @foreach(\App\Models\Post::POST_TYPES as $post_type)
                             <option value="{{$post_type}}" {{$post->type===$post_type?'selected':''}}>{{$post_type}}</option>
                             @endforeach
@@ -66,3 +66,10 @@
     </section>
     <!-- /.content -->
 @endsection
+
+
+@section('js')
+    <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('admin/js/ckeditor/ru.js') }}"></script>
+    <script src="{{ asset('admin/js/app.js') }}"></script>
+    @endsection

@@ -1,6 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Posts')
+@section('title', 'Create post')
+
+@section('content_header')
+    <h1>Create post</h1>
+@stop
 
 @section('content')
     <!-- Main content -->

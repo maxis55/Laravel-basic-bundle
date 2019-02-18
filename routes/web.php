@@ -33,6 +33,8 @@ Route::group(
     ],
     function () {
         Route::get('/', 'HomeController@index')->name('home');
+        Route::post('ajax/quick-file-upload','AjaxController@uploadFile');
+
         Route::namespace('Posts')->group(function () {
 
             Route::resource('posts', 'PostController');

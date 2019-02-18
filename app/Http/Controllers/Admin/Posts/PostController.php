@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Posts;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -40,7 +41,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $post=auth()->user()->posts()->save(new Post($request->except('_token', '_method')));
+        $additional_parameters=['_token', '_method'];
+        $params=$request->except($additional_parameters);
+        $cover=null;
+
+        if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
+            $cover =  $params['cover']->store('posts', 'public');
+            $params['cover']=$cover;
+        }
+
+
+
+
+        $post=auth()->user()->posts()->save(new Post($params));
 
         return redirect()->route('admin.posts.edit', $post->id)->with('message', 'Создание успешно');
     }
@@ -80,7 +93,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
-        $post->update($request->except('_token', '_method'));
+        $additional_parameters=['_token', '_method'];
+        $params=$request->except($additional_parameters);
+        $cover=null;
+
+        if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
+            $cover = $params['cover']->store('posts', 'public');
+            $params['cover']=$cover;
+        }
+
+        $post->update($params);
 
         $request->session()->flash('message', 'Редактирование успешно');
 

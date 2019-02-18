@@ -70,10 +70,3 @@
     </section>
     <!-- /.content -->
 @endsection
-
-
-@section('js')
-    <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('admin/js/ckeditor/ru.js') }}"></script>
-    <script src="{{ asset('admin/js/app.js') }}"></script>
-@endsection

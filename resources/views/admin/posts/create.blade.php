@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         <label for="name">Название <span class="text-danger">*</span></label>
-                        <input type="text" name="name" id="name" placeholder="Название" class="form-control" value="{{ old('name') }}">
+                        <input required type="text" name="name" id="name" placeholder="Название" class="form-control" value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
                         <label for="content">Описание </label>

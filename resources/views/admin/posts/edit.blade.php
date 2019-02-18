@@ -44,7 +44,8 @@
                     @if(isset($post->cover))
                     <div class="form-group">
                         <img src="{{ asset("storage/$post->cover") }}" alt="cover" class="img-responsive"> <br/>
-                        <a onclick="return confirm('Вы уверены?')" href="{{ route('admin.posts.remove-image', ['news' => $post->id]) }}" class="btn btn-danger">Удалить изображение?</a>
+
+                        <a onclick="return confirm('Вы уверены?')?$('#remove_img_form').submit():false;" href="javascript:void(0)" class="btn btn-danger">Удалить изображение?</a>
                     </div>
                     @endif
                     <div class="form-group">
@@ -62,7 +63,10 @@
             </form>
         </div>
         <!-- /.box -->
-
+        <form id="remove_img_form" action="{{ route('admin.posts.remove-image', ['post' => $post->id]) }}" method="post">
+            @csrf
+            @method('patch')
+        </form>
     </section>
     <!-- /.content -->
 @endsection
@@ -72,4 +76,4 @@
     <script src="{{ asset('admin/js/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('admin/js/ckeditor/ru.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
-    @endsection
+@endsection

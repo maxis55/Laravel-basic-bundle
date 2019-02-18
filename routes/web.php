@@ -36,9 +36,13 @@ Route::group(
         Route::post('ajax/quick-file-upload','AjaxController@uploadFile');
 
         Route::namespace('Posts')->group(function () {
-
             Route::resource('posts', 'PostController');
-            Route::get('posts/{post}/remove-image', 'PostController@removeImage')->name('posts.remove-image');
+            Route::patch('posts/{post}/remove-image', 'PostController@removeImage')->name('posts.remove-image');
+        });
+
+        Route::namespace('Users')->group(function () {
+            Route::resource('users', 'UserController');
+            Route::get('/profile', 'UserController@profile')->name('admin.users.profile');
         });
     }
 );

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\..\Controllers\Admin\Posts\Requests;
+namespace App\Http\Controllers\Admin\Posts\Requests;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePostRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->hasRole([Role::SUPER_ADMIN, Role::ADMIN]);
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'short_desc' => 'text|max:255',
+            'type' => 'required',
         ];
     }
 }

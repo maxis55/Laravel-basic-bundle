@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Posts\Requests;
+namespace App\Http\Requests\Controllers\Admin\Users\Requests;
 
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePostRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,10 @@ class CreatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'short_desc' => 'text|max:255',
-            'type' => 'required',
+            'name'=>'required',
+            'email'=>['required','email','unique:users'],
+            'password'=>['required','min:8'],
+            'role'=>'required'
         ];
     }
 }

@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('content')->nullable();
-            $table->text('short_desc')->nullable();
+            $table->string('short_desc')->nullable();
             $table->string('cover')->nullable();
             //comment next line if there is only 1 type of posts in app
             $table->string('type');

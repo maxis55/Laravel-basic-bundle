@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Users;
 
+use App\Http\Controllers\Admin\Posts\Requests\UpdatePostRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Controllers\Admin\Users\Requests\CreateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,9 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereRoleIs('user');
-        if(auth()->user()->hasRole('superadmin')){
-            $users->orWhereRoleIs('admin');
+        $users = User::whereRoleIs(Role::USER);
+        if(auth()->user()->hasRole(Role::SUPER_ADMIN)){
+            $users->orWhereRoleIs(Role::ADMIN);
         }
         return view('admin.users.index', ['users' => $users->paginate(20)]);
     }
@@ -34,10 +36,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->hasRole('superadmin')){
+        if(auth()->user()->hasRole(Role::SUPER_ADMIN)){
             $roles = Role::all();
         }else{
-            $roles = Role::where('name','=','user')->get();
+            $roles = Role::where('name','=',Role::USER)->get();
         }
         return view('admin.users.create', ['roles' => $roles]);
     }
@@ -45,10 +47,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CreateUserRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
 
         $additional_parameters = ['_token', '_method', 'role'];
@@ -56,6 +58,7 @@ class UserController extends Controller
         $params['password']=Hash::make($params['password']);
         $user = new User($params);
         $user->save();
+
         $user->roles()->sync($request->input('role'));
 
         return redirect()->route('admin.users.edit', $user->id)->with('message', 'Создание успешно');
@@ -82,10 +85,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if(auth()->user()->hasRole('superadmin')){
+        if(auth()->user()->hasRole(Role::SUPER_ADMIN)){
             $roles = Role::all();
         }else{
-            $roles = Role::where('name','=','user')->get();
+            $roles = Role::where('name','=',Role::USER)->get();
         }
         return view('admin.users.edit',
             [
@@ -118,12 +121,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdatePostRequest|Request $request
      * @param User $user
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(Request $request, User $user)
+    public function update(UpdatePostRequest $request, User $user)
     {
 
         $additional_parameters = ['_token', '_method', 'role'];

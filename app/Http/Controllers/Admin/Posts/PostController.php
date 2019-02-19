@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Posts;
 
+use App\Http\Controllers\Admin\Posts\Requests\CreatePostRequest;
+use App\Http\Controllers\Admin\Posts\Requests\UpdatePostRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -17,8 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::paginate(20);
-        return view('admin.posts.index',['posts'=>$posts]);
+        $posts = Post::paginate(20);
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
 
@@ -35,25 +37,23 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePostRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
 
-        $additional_parameters=['_token', '_method'];
-        $params=$request->except($additional_parameters);
-        $cover=null;
+        $additional_parameters = ['_token', '_method'];
+        $params = $request->except($additional_parameters);
+        $cover = null;
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover =  $params['cover']->store('posts', 'public');
-            $params['cover']=$cover;
+            $cover = $params['cover']->store('posts', 'public');
+            $params['cover'] = $cover;
         }
 
 
-
-
-        $post=auth()->user()->posts()->save(new Post($params));
+        $post = auth()->user()->posts()->save(new Post($params));
 
         return redirect()->route('admin.posts.edit', $post->id)->with('message', 'Создание успешно');
     }
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show',['post'=>$post]);
+        return view('admin.posts.show', ['post' => $post]);
     }
 
     /**
@@ -79,27 +79,27 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit',['post'=>$post]);
+        return view('admin.posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdatePostRequest|Request $request
      * @param Post $post
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
 
-        $additional_parameters=['_token', '_method'];
-        $params=$request->except($additional_parameters);
-        $cover=null;
+        $additional_parameters = ['_token', '_method'];
+        $params = $request->except($additional_parameters);
+        $cover = null;
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
             $cover = $params['cover']->store('posts', 'public');
-            $params['cover']=$cover;
+            $params['cover'] = $cover;
         }
 
         $post->update($params);
@@ -122,7 +122,7 @@ class PostController extends Controller
             $post->delete();
             request()->session()->flash('message', 'Удаление успешно');
         } catch (\Exception $e) {
-            request()->session()->flash('message', 'Удаление не успешно. '.$e->getMessage());
+            request()->session()->flash('message', 'Удаление не успешно. ' . $e->getMessage());
         }
 
         return redirect()->route('admin.posts.index');

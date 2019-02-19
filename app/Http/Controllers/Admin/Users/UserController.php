@@ -19,8 +19,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereRoleIs('user')->paginate(20);
-        return view('admin.users.index', ['users' => $users]);
+        $users = User::whereRoleIs('user');
+        if(auth()->user()->hasRole('superadmin')){
+            $users->orWhereRoleIs('admin');
+        }
+        return view('admin.users.index', ['users' => $users->paginate(20)]);
     }
 
 
@@ -31,7 +34,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        if(auth()->user()->hasRole('superadmin')){
+            $roles = Role::all();
+        }else{
+            $roles = Role::where('name','=','user')->get();
+        }
         return view('admin.users.create', ['roles' => $roles]);
     }
 
@@ -75,7 +82,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
+        if(auth()->user()->hasRole('superadmin')){
+            $roles = Role::all();
+        }else{
+            $roles = Role::where('name','=','user')->get();
+        }
         return view('admin.users.edit',
             [
                 'user' => $user,

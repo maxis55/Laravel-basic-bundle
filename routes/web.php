@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
 
 Route::group(
     [
-        'prefix'     => 'admin',
+        'prefix'     => 'admin/',
         'as'         => 'admin.',
         'namespace'  => 'Admin',
         'middleware' => [

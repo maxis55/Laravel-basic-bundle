@@ -11,6 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/admin/js/app.js', 'public/admin/js')
-    .css('resources/admin/css/app.css', 'public/admin/css')
-    .copyDirectory('resources/admin/js/ckeditor', 'public/admin/js/ckeditor');
+mix.js('resources/admin/js/app.js', 'public/assets/admin/js')
+    .css('resources/admin/css/app.css', 'public/assets/admin/css')
+    .copyDirectory('resources/admin/js/ckeditor', 'public/assets/admin/js/ckeditor');

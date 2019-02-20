@@ -230,18 +230,8 @@ $(document).ready(function () {
   });
   $('.select2').select2({
     placeholder: 'Select'
-  }); // $('.datatable').DataTable({
-  //     'info' : false,
-  //     'paging' : false,
-  //     'searching' : false,
-  //     'columnDefs' : [
-  //         {
-  //             'orderable': false, 'targets' : -1
-  //         }
-  //     ],
-  //     'sorting' : []
-  // });
-
+  });
+  $('.datatable').DataTable({});
   $('form.dynamic_form').on('change', 'select.type_select', function (e) {
     $('.type_specific_block').hide().find('input').attr('disabled', true);
     $('.' + $(this).val() + '-block').show().find('input').attr('disabled', false);
@@ -258,7 +248,7 @@ window.$ = window.jQuery = jQuery;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\OSPanel\domains\Laravel_Basic_Bundle\resources\admin\js\app.js */"./resources/admin/js/app.js");
+module.exports = __webpack_require__(/*! E:\Programs\OpenServer\OSPanel\domains\LaravelLTE\resources\admin\js\app.js */"./resources/admin/js/app.js");
 
 
 /***/ })

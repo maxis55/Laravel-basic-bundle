@@ -125,17 +125,9 @@ $(document).ready(function () {
     $('.select2').select2({
         placeholder: 'Select'
     });
-    // $('.datatable').DataTable({
-    //     'info' : false,
-    //     'paging' : false,
-    //     'searching' : false,
-    //     'columnDefs' : [
-    //         {
-    //             'orderable': false, 'targets' : -1
-    //         }
-    //     ],
-    //     'sorting' : []
-    // });
+    $('.datatable').DataTable({
+
+    });
 
 
     $('form.dynamic_form').on('change','select.type_select',function (e) {

@@ -14,7 +14,7 @@
         @if($users)
             <div class="box">
                 <div class="box-body">
-                    <table class="table">
+                    <table class="table datatable">
                         <thead>
                         <tr>
                             <td class="col-md-4">Имя</td>

@@ -147,7 +147,7 @@ $(document).ready(function () {
             { name: 'type' },
             { name: 'cover' },
             { name: 'created_at' },
-            { name: 'updated_at' },
+            { name: 'action', sortable:false },
         ],
     });
 

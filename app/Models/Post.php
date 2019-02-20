@@ -33,6 +33,39 @@ class Post extends Model
     ];
 
 
+
+
+    /**
+     * Returns image for the datatables.
+     *
+     * @return string
+     */
+    public function laratablesCover()
+    {
+        return '<img src="'.asset("storage/".$this->cover).'" alt="cover" class="img-responsive">';
+    }
+
+    /**
+     * Returns truncated name for the datatables.
+     *
+     * @return string
+     */
+    public function laratablesCreatedAt()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    /**
+     * Returns the action column html for datatables.
+     *
+     * @param \App\User
+     * @return string
+     */
+    public static function laratablesCustomAction($post)
+    {
+        return view('admin.posts.includes.action_column', compact('post'))->render();
+    }
+
     /**
      * Returns the data attribute for row id of the user.
      *

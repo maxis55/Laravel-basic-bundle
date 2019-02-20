@@ -251,7 +251,8 @@ $(document).ready(function () {
     }, {
       name: 'created_at'
     }, {
-      name: 'updated_at'
+      name: 'action',
+      sortable: false
     }]
   });
   $('.datatables_box').on('click', '.delete_element', function (e) {

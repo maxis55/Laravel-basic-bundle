@@ -15,6 +15,14 @@ class Post extends Model
         self::TYPE_DEFAULT
     ];
 
+    const ADMIN_DATATABLES_JSON=[
+        ['data'=>'name'],
+        ['data'=>'type'],
+        ['data'=>'cover'],
+        ['data'=>'created_at'],
+    ];
+
+
     protected $fillable = [
         'name',
         'slug',
@@ -23,6 +31,20 @@ class Post extends Model
         'cover',
         'type',
     ];
+
+
+    /**
+     * Returns the data attribute for row id of the user.
+     *
+     * @return array
+     */
+    public function laratablesRowCover()
+    {
+        return [
+            'id' => $this->id,
+            'cover'=> '<img src="'.asset("/storage/".$this->cover).'" alt="cover" class="img-responsive">',
+        ];
+    }
 
 
     /**

@@ -120,12 +120,12 @@ class PostController extends Controller
     {
         try {
             $post->delete();
-            request()->session()->flash('message', 'Удаление успешно');
+            return 'success';
         } catch (\Exception $e) {
-            request()->session()->flash('message', 'Удаление не успешно. ' . $e->getMessage());
+            return 'Error: '.$e->getMessage();
         }
 
-        return redirect()->route('admin.posts.index');
+        return 'Failed to process request!';
     }
 
     /**

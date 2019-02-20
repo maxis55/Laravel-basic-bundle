@@ -92,28 +92,38 @@ function MyCustomUploadAdapterPlugin( editor ) {
     };
 }
 
-$.each(document.querySelectorAll('.ckeditor'),function(index,value){
-
-    ClassicEditor
-        .create(
-            value,
-            {
-                extraPlugins: [
-                    MyCustomUploadAdapterPlugin
-                ],
-
-            })
-        .then(
-        )
-        .catch(error => {
-            console.error(error);
-        });
-});
-
-
 
 
 $(document).ready(function () {
+    //ajax headers setup for ajax calls
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $.each(document.querySelectorAll('.ckeditor'),function(index,value){
+
+        ClassicEditor
+            .create(
+                value,
+                {
+                    extraPlugins: [
+                        MyCustomUploadAdapterPlugin
+                    ],
+
+                })
+            .then(
+            )
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+
+
+
     $('#is_free').on('change', function () {
         console.log($(this).val());
         if ($(this).val() == 0) {
@@ -125,9 +135,43 @@ $(document).ready(function () {
     $('.select2').select2({
         placeholder: 'Select'
     });
-    $('.datatable').DataTable({
+
+
+    var table=$('.datatable').DataTable({
+        serverSide: true,
+        processing: true,
+        responsive: true,
+        "ajax": '/api/posts',
+        "columns": [
+            { name: 'name' },
+            { name: 'type' },
+            { name: 'cover' },
+            { name: 'created_at' },
+            { name: 'updated_at' },
+        ],
+    });
+
+
+    $('.datatables_box').on('click','.delete_element',function (e) {
+        e.preventDefault();
+        let curr_el=$(this);
+        if(confirm(curr_el.data('confirmation'))){
+            $.ajax({
+                url:  curr_el.attr('href'),
+                method: 'post',
+                data: {_method: 'delete'},
+                success: function (result) {
+                    if (result==='success'){
+                        table.ajax.reload( null, false );
+                    }
+                }
+            });
+        }else{
+            console.log('nothing');
+        }
 
     });
+
 
 
     $('form.dynamic_form').on('change','select.type_select',function (e) {

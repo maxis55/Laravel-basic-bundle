@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Posts')
+@section('title', 'Users')
 
 @section('content_header')
     <h1>Users</h1>
@@ -14,7 +14,7 @@
         @if($users)
             <div class="box">
                 <div class="box-body">
-                    <table class="table datatable">
+                    <table class="table">
                         <thead>
                         <tr>
                             <td class="col-md-4">Имя</td>

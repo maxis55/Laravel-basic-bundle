@@ -237,45 +237,39 @@ $(document).ready(function () {
   $('.select2').select2({
     placeholder: 'Select'
   });
-  var table = $('.datatable').DataTable({
-    serverSide: true,
-    processing: true,
-    responsive: true,
-    "ajax": '/api/posts',
-    "columns": [{
-      name: 'name'
-    }, {
-      name: 'type'
-    }, {
-      name: 'cover'
-    }, {
-      name: 'created_at'
-    }, {
-      name: 'action',
-      sortable: false
-    }]
-  });
-  $('.datatables_box').on('click', '.delete_element', function (e) {
-    e.preventDefault();
-    var curr_el = $(this);
+  var datatable_el = $('#datatable');
 
-    if (confirm(curr_el.data('confirmation'))) {
-      $.ajax({
-        url: curr_el.attr('href'),
-        method: 'post',
-        data: {
-          _method: 'delete'
-        },
-        success: function success(result) {
-          if (result === 'success') {
-            table.ajax.reload(null, false);
+  if (datatable_el.length > 0) {
+    var table = datatable_el.DataTable({
+      serverSide: true,
+      processing: true,
+      responsive: true,
+      "ajax": datatable_el.data('api_route'),
+      "columns": datatable_el.data('columns_config')
+    });
+    $('.datatables_box').on('click', '.delete_element', function (e) {
+      e.preventDefault();
+      var curr_el = $(this);
+
+      if (confirm(curr_el.data('confirmation'))) {
+        $.ajax({
+          url: curr_el.attr('href'),
+          method: 'post',
+          data: {
+            _method: 'delete'
+          },
+          success: function success(result) {
+            if (result === 'success') {
+              table.ajax.reload(null, false);
+            }
           }
-        }
-      });
-    } else {
-      console.log('nothing');
-    }
-  });
+        });
+      } else {
+        console.log('nothing');
+      }
+    });
+  }
+
   $('form.dynamic_form').on('change', 'select.type_select', function (e) {
     $('.type_specific_block').hide().find('input').attr('disabled', true);
     $('.' + $(this).val() + '-block').show().find('input').attr('disabled', false);

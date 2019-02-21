@@ -137,40 +137,41 @@ $(document).ready(function () {
     });
 
 
-    var table=$('.datatable').DataTable({
-        serverSide: true,
-        processing: true,
-        responsive: true,
-        "ajax": '/api/posts',
-        "columns": [
-            { name: 'name' },
-            { name: 'type' },
-            { name: 'cover' },
-            { name: 'created_at' },
-            { name: 'action', sortable:false },
-        ],
-    });
+    let datatable_el=$('#datatable');
+
+    if(datatable_el.length>0){
+
+        let table=datatable_el.DataTable({
+            serverSide: true,
+            processing: true,
+            responsive: true,
+            "ajax": datatable_el.data('api_route'),
+            "columns": datatable_el.data('columns_config'),
+        });
 
 
-    $('.datatables_box').on('click','.delete_element',function (e) {
-        e.preventDefault();
-        let curr_el=$(this);
-        if(confirm(curr_el.data('confirmation'))){
-            $.ajax({
-                url:  curr_el.attr('href'),
-                method: 'post',
-                data: {_method: 'delete'},
-                success: function (result) {
-                    if (result==='success'){
-                        table.ajax.reload( null, false );
+        $('.datatables_box').on('click','.delete_element',function (e) {
+            e.preventDefault();
+            let curr_el=$(this);
+            if(confirm(curr_el.data('confirmation'))){
+                $.ajax({
+                    url:  curr_el.attr('href'),
+                    method: 'post',
+                    data: {_method: 'delete'},
+                    success: function (result) {
+                        if (result==='success'){
+                            table.ajax.reload( null, false );
+                        }
                     }
-                }
-            });
-        }else{
-            console.log('nothing');
-        }
+                });
+            }else{
+                console.log('nothing');
+            }
 
-    });
+        });
+    }
+
+
 
 
 

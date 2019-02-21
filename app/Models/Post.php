@@ -16,10 +16,11 @@ class Post extends Model
     ];
 
     const ADMIN_DATATABLES_JSON=[
-        ['data'=>'name'],
-        ['data'=>'type'],
-        ['data'=>'cover'],
-        ['data'=>'created_at'],
+        ['name'=>'name'],
+        ['name'=>'type'],
+        ['name'=>'cover'],
+        ['name'=>'created_at'],
+        ['name'=>'action','sortable'=>false]
     ];
 
 
@@ -46,7 +47,7 @@ class Post extends Model
     }
 
     /**
-     * Returns truncated name for the datatables.
+     * Returns created_at date for the datatables.
      *
      * @return string
      */
@@ -63,7 +64,7 @@ class Post extends Model
      */
     public static function laratablesCustomAction($post)
     {
-        return view('admin.posts.includes.action_column', compact('post'))->render();
+        return view('admin.posts.includes.action_column', ['post'=>$post,'route'=>'posts'])->render();
     }
 
     /**

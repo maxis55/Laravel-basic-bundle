@@ -10,7 +10,7 @@ $factory->define(App\Models\Post::class, function (Faker $faker) {
         'name' => $faker->sentence($nbWords = 5, $variableNbWords = true),
         'slug' => $faker->unique()->slug,
         'content' => $faker->paragraphs($nbWords = 50, $variableNbWords = true),
-        'short_desc' => $faker->paragraphs($nbWords = 3, $variableNbWords = true),
+        'short_desc' => $faker->paragraph($nbWords = 3, $variableNbWords = true),
         //comment next line if there is only 1 type of posts in app
         'type'=>$faker->randomElement(\App\Models\Post::POST_TYPES),
 

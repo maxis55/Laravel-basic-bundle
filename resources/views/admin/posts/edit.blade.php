@@ -24,7 +24,7 @@
                         </select>
                     </div>
 
-                    <div class="type_specific_block {{\App\Models\Post::TYPE_DEFAULT}}-block" style="display: none">
+                    <div class="type_specific_block {{\App\Models\Post::TYPE_DEFAULT}}-block" style="{{$post->type!==\App\Models\Post::TYPE_DEFAULT?'display: none':''}}">
 
                     </div>
 

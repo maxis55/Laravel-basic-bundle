@@ -11,12 +11,12 @@
     <section class="content">
         @include('layouts.errors-and-messages')
         <div class="box">
-            <form action="{{ route('admin.posts.store') }}" method="post" class="form posts_form" enctype="multipart/form-data">
+            <form action="{{ route('admin.posts.store') }}" method="post" class="form dynamic_form" enctype="multipart/form-data">
                 <div class="box-body">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="type">Тип записи <span class="text-danger">*</span></label>
-                        <select type="text" name="type" id="type" class="form-control" required autocomplete="off">
+                        <select type="text" name="type" id="type" class="form-control type_select" required autocomplete="off">
                             @foreach(\App\Models\Post::POST_TYPES as $post_type)
                                 <option value="{{$post_type}}" >{{$post_type}}</option>
                             @endforeach

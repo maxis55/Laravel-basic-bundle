@@ -1,0 +1,22 @@
+
+.checkbox-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.checkbox-list ul {
+    list-style-type: none;
+    padding-left: 25px;
+}
+
+.ck-editor__editable {
+    min-height: 400px;
+}
+
+.type_specific_block{
+    border: double #605ca8;
+    padding-left: 10px;
+    padding-right:10px;
+    margin-top: 10px;
+
+}

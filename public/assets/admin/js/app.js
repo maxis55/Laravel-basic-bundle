@@ -286,7 +286,7 @@ window.$ = window.jQuery = jQuery;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\OSPanel\domains\Laravel_Basic_Bundle\resources\admin\js\app.js */"./resources/admin/js/app.js");
+module.exports = __webpack_require__(/*! E:\Programs\OpenServer\OSPanel\domains\LaravelLTE\resources\admin\js\app.js */"./resources/admin/js/app.js");
 
 
 /***/ })

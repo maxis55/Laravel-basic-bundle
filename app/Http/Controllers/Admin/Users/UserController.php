@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Users;
 
-use App\Http\Controllers\Admin\Posts\Requests\UpdatePostRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Controllers\Admin\Users\Requests\CreateUserRequest;
 use App\Http\Requests\Controllers\Admin\Users\Requests\UpdateUserRequest;
@@ -136,7 +135,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
 
-        $additional_parameters = ['_token', '_method', 'roles','password'];
+        $additional_parameters = ['_token', '_method', 'roles', 'password'];
         $params                = $request->except($additional_parameters);
 
         if ( ! empty($request->input('password'))) {

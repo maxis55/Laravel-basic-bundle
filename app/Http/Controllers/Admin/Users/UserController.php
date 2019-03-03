@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Admin\Posts\Requests\UpdatePostRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Controllers\Admin\Users\Requests\CreateUserRequest;
+use App\Http\Requests\Controllers\Admin\Users\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,13 +55,13 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
 
-        $additional_parameters = ['_token', '_method', 'role'];
+        $additional_parameters = ['_token', '_method', 'roles'];
         $params                = $request->except($additional_parameters);
         $params['password']    = Hash::make($params['password']);
         $user                  = new User($params);
         $user->save();
 
-        $user->roles()->sync($request->input('role'));
+        $user->roles()->sync($request->input('roles'));
 
         return redirect()->route('admin.users.edit', $user->id)->with('message', 'Создание успешно');
     }
@@ -126,24 +127,24 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdatePostRequest|Request $request
+     * @param UpdateUserRequest $request
      * @param User $user
      *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function update(UpdatePostRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
 
-        $additional_parameters = ['_token', '_method', 'role'];
+        $additional_parameters = ['_token', '_method', 'roles','password'];
         $params                = $request->except($additional_parameters);
 
         if ( ! empty($request->input('password'))) {
-            $params['password'] = Hash::make($params['password']);
+            $params['password'] = Hash::make($request->input('password'));
         }
         $user->update($params);
 
-        $user->roles()->sync($request->input('role'));
+        $user->roles()->sync($request->input('roles'));
 
         $user->save();
 

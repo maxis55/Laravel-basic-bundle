@@ -31,8 +31,8 @@
                         <input type="password" name="password" id="password" placeholder="xxxxx" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="roles">Role </label>
-                        <select name="roles[]" id="roles" class="form-control select2" multiple="multiple">
+                        <label for="roles">Roles</label>
+                        <select name="roles[]" id="roles" class="form-control select2" multiple>
                             @foreach($roles as $role)
                                 <option @if(in_array($role->id, $selected_roles))selected="selected" @endif value="{{ $role->id }}">{{ $role->display_name }}</option>
                             @endforeach
@@ -43,7 +43,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.users.index') }}" class="btn btn-default btn-sm">Back</a>
+                        <a href="{{ back() }}" class="btn btn-default btn-sm">Back</a>
                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
                     </div>
                 </div>

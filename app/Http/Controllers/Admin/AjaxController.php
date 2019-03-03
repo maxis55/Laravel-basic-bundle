@@ -11,10 +11,10 @@ class AjaxController extends Controller
     {
         $uploadedImage = $request->file('upload');
 
-        if(!$uploadedImage){
+        if ( ! $uploadedImage) {
             return [
                 'uploaded' => false,
-                'error' => [
+                'error'    => [
                     'message' => 'Не было отправлено изображение'
                 ]
             ];
@@ -25,12 +25,12 @@ class AjaxController extends Controller
         if ($path) {
             return [
                 'uploaded' => true,
-                'url' => asset('storage/' . $path)
+                'url'      => asset('storage/' . $path)
             ];
         } else {
             return [
                 'uploaded' => false,
-                'error' => [
+                'error'    => [
                     'message' => 'Не удалось загрузить изображение'
                 ]
             ];

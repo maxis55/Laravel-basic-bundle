@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -48,6 +47,7 @@ class LoginController extends Controller
         if (auth()->guard()->check()) {
             return redirect($this->redirectTo);
         }
+
         return view('front.auth.login');
     }
 

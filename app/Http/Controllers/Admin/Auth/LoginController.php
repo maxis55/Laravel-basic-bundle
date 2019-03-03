@@ -45,7 +45,8 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     *
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -53,8 +54,8 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => ['required','string',new AdminUsernameRule()],
-            'password' => 'required|string',
+            $this->username() => ['required', 'string', new AdminUsernameRule()],
+            'password'        => 'required|string',
         ]);
     }
 
@@ -81,7 +82,6 @@ class LoginController extends Controller
     {
         return Auth::guard('admin');
     }
-
 
 
 }

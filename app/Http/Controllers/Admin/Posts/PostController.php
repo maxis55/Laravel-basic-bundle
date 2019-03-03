@@ -37,17 +37,18 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreatePostRequest|Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePostRequest $request)
     {
 
         $additional_parameters = ['_token', '_method'];
-        $params = $request->except($additional_parameters);
-        $cover = null;
+        $params                = $request->except($additional_parameters);
+        $cover                 = null;
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover = $params['cover']->store('posts', 'public');
+            $cover           = $params['cover']->store('posts', 'public');
             $params['cover'] = $cover;
         }
 
@@ -61,6 +62,7 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param Post $post
+     *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
@@ -73,6 +75,7 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Post $post
+     *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
@@ -86,6 +89,7 @@ class PostController extends Controller
      *
      * @param UpdatePostRequest|Request $request
      * @param Post $post
+     *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
@@ -93,11 +97,11 @@ class PostController extends Controller
     {
 
         $additional_parameters = ['_token', '_method'];
-        $params = $request->except($additional_parameters);
-        $cover = null;
+        $params                = $request->except($additional_parameters);
+        $cover                 = null;
 
         if (isset($params['cover']) && ($params['cover'] instanceof UploadedFile)) {
-            $cover = $params['cover']->store('posts', 'public');
+            $cover           = $params['cover']->store('posts', 'public');
             $params['cover'] = $cover;
         }
 
@@ -112,6 +116,7 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Post $post
+     *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
@@ -119,9 +124,10 @@ class PostController extends Controller
     {
         try {
             $post->delete();
+
             return 'success';
         } catch (\Exception $e) {
-            return 'Error: '.$e->getMessage();
+            return 'Error: ' . $e->getMessage();
         }
 
         return 'Failed to process request!';
@@ -129,6 +135,7 @@ class PostController extends Controller
 
     /**
      * @param Post $post
+     *
      * @return \Illuminate\Http\RedirectResponse
      * @internal param Request $request
      */
@@ -138,6 +145,7 @@ class PostController extends Controller
         $result = $post->update(['cover' => null]) && $result;
 
         request()->session()->flash('message', 'Изображение успешно удалено');
+
         return redirect()->route('admin.posts.edit', $post->id);
     }
 

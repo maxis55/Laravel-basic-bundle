@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\Posts;
 
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {

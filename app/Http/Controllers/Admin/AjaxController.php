@@ -25,7 +25,7 @@ class AjaxController extends Controller
         if ($path) {
             return [
                 'uploaded' => true,
-                'url'      => asset('storage/' . $path)
+                'url'      => asset('/storage/' . $path)
             ];
         } else {
             return [

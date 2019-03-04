@@ -43,7 +43,7 @@
                 <div class="box-footer">
                     <div class="btn-group">
                         <div class="btn-group">
-                            <a href="{{ route('admin.users.index') }}" class="btn btn-default">Back</a>
+                            <a href="{{url()->previous()==url()->current()?route('admin.users.index'):url()->previous() }}" class="btn btn-default">Back</a>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </div>

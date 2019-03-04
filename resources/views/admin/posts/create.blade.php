@@ -52,7 +52,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.posts.index') }}" class="btn btn-default">Назад</a>
+                        <a href="{{url()->previous()==url()->current()?route('admin.posts.index'):url()->previous() }}" class="btn btn-default">Назад</a>
                         <button type="submit" class="btn btn-primary">Создать</button>
                     </div>
                 </div>

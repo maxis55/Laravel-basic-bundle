@@ -39,7 +39,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <div class="btn-group">
-                        <a href="{{ route('admin.posts.index') }}" class="btn btn-default btn-sm">Назад</a>
+                        <a href="{{url()->previous()==url()->current()?route('admin.posts.index'):url()->previous() }}" class="btn btn-default btn-sm">Назад</a>
                     </div>
                 </div>
             </div>

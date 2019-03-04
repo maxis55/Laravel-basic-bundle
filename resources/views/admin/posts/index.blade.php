@@ -21,38 +21,7 @@
                             <td class="col-md-2">Действия</td>
                         </tr>
                         </thead>
-                        {{--<tbody>--}}
-                        {{--@foreach ($posts as $single_post)--}}
-                            {{--<tr>--}}
-                                {{--<td>--}}
-                                    {{--<a href="{{ route('admin.posts.show', $single_post->id) }}">{{ $single_post->name }}</a>--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--@lang($single_post->type)--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--@if(isset($single_post->cover))--}}
-                                        {{--<img src="{{ asset("storage/$single_post->cover") }}" alt="cover" class="img-responsive">--}}
-                                    {{--@endif--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                    {{--<div class="btn-group">--}}
 
-                                        {{--<form action="{{ route('admin.posts.destroy', $single_post->id) }}"--}}
-                                              {{--method="post">--}}
-                                            {{--@csrf--}}
-                                            {{--@method('delete')--}}
-                                            {{--<a href="{{ route('admin.posts.edit', $single_post->id) }}"--}}
-                                               {{--class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Редактировать</a>--}}
-                                            {{--<button onclick="return confirm('Вы уверены?')" type="submit"--}}
-                                                    {{--class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Удалить--}}
-                                            {{--</button>--}}
-                                        {{--</form>--}}
-                                    {{--</div>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        {{--@endforeach--}}
-                        {{--</tbody>--}}
                     </table>
                 </div>
                 <!-- /.box-body -->
